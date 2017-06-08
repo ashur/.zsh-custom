@@ -1,9 +1,23 @@
-CURRENT_DATE=`date +%Y-%m-%d`
-PUG_UPDATE_FILE="${HOME}/.pug_update"
+# Update all projects in the 'daily' namespace
+# ---
+
+local CURRENT_DATE=`date +%Y-%m-%d`
+local PUG_UPDATE_FILE="${HOME}/.pug_update"
+local PUG_GROUP_NAME="daily"
+
+which pug >/dev/null
+if [ $? != 0 ]; then
+	return;
+fi
+
+pug ls | grep "${PUG_GROUP_NAME}" >/dev/null
+if [ $? != 0 ]; then
+	return;
+fi
 
 function pug_update()
 {
-	pug update daily --all
+	pug update "${PUG_GROUP_NAME}" --all
 	echo $CURRENT_DATE > $PUG_UPDATE_FILE
 }
 
