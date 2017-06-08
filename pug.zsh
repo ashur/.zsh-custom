@@ -2,7 +2,6 @@ CURRENT_DATE=`date +%Y-%m-%d`
 PUG_UPDATE_FILE="${HOME}/.pug_update"
 
 if [ ! -f "${PUG_UPDATE_FILE}" ]; then
-	echo $CURRENT_DATE >> $PUG_UPDATE_FILE
 	pug_update;
 fi
 
@@ -14,4 +13,5 @@ fi
 function pug_update()
 {
 	pug update daily --all
+	echo $CURRENT_DATE > $PUG_UPDATE_FILE
 }
