@@ -1,7 +1,7 @@
 # Update all projects in the 'daily' namespace
 # ---
 
-local CURRENT_DATE=`date +%Y-%m-%d`
+local CURRENT_TIME=`date +%s`
 local PUG_UPDATE_FILE="${HOME}/.pug_update"
 local PUG_GROUP_NAME="daily"
 
@@ -18,7 +18,7 @@ fi
 function pug_update()
 {
 	pug update "${PUG_GROUP_NAME}" --all
-	echo $CURRENT_DATE > $PUG_UPDATE_FILE
+	echo $CURRENT_TIME > $PUG_UPDATE_FILE
 }
 
 if [ ! -f "${PUG_UPDATE_FILE}" ]; then
@@ -26,6 +26,8 @@ if [ ! -f "${PUG_UPDATE_FILE}" ]; then
 fi
 
 PUG_LAST_UPDATE=`cat ${PUG_UPDATE_FILE}`
-if [ "${CURRENT_DATE}" != "${PUG_LAST_UPDATE}" ]; then
+TIME_SINCE_UPDATE=$(($CURRENT_TIME - $PUG_LAST_UPDATE))
+
+if [ "${TIME_SINCE_UPDATE}" -ge 86400 ]; then
 	pug_update;
 fi
