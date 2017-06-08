@@ -10,7 +10,7 @@ if [ $? != 0 ]; then
 	return;
 fi
 
-pug ls | grep "${PUG_GROUP_NAME}" >/dev/null
+pug ls | grep " ${PUG_GROUP_NAME}/" >/dev/null
 if [ $? != 0 ]; then
 	return;
 fi
