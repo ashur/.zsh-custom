@@ -1,4 +1,4 @@
-ATOM=/usr/local/bin/atom
+ATOM=/usr/local/bin/atom-beta
 
 function atom
 {
