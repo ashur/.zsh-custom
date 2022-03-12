@@ -7,8 +7,7 @@ Customizations for [Oh My ZSH][omz].
 Clone this repository to `~/.zsh-custom`:
 
 ```
-$ cd ~
-$ git clone https://github.com/ashur/.zsh-custom.git
+git clone https://github.com/ashur/.zsh-custom.git ~/.zsh-custom
 ```
 
 Set `ZSH_CUSTOM` in `~/.zshrc`:
