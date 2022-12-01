@@ -1,5 +1,6 @@
 alias gco='git checkout'
 alias gh='git hist'
+alias gpu='git push -u origin `git rev-parse --abbrev-ref HEAD`'
 alias gs='git status'
 alias gw='git whatchanged'
 alias hub='github'
