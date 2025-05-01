@@ -10,13 +10,15 @@ alias start=serve
 
 serve() {
 	if [ -f .aliases.zsh ]; then
-		source .aliases.zsh
-	fi
+		serve_local() {
+			echo "'serve_local' not defined in $PWD/.aliases.zsh"
+			return 1
+		}
 
-	which serve_local > /dev/null
-	if [ $? -eq 0 ]; then
+		source .aliases.zsh
 		serve_local
 	else
-		npm run serve
+		echo "$PWD/.aliases.zsh not found"
+		return 1
 	fi
 }
