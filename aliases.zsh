@@ -11,7 +11,7 @@ alias serve=start
 start() {
 	if [ -f .aliases.zsh ]; then
 		start_local() {
-			echo "'start_local' not defined in $PWD/.aliases.zsh"
+			echo "'start_local' not defined in $PWD/.aliases.zsh. You can run 'create_start_local' to create it."
 			return 1
 		}
 
