@@ -11,14 +11,29 @@ alias serve=start
 start() {
 	if [ -f .aliases.zsh ]; then
 		start_local() {
-			echo "'start_local' not defined in $PWD/.aliases.zsh. You can run 'create_start_local' to create it."
-			return 1
+			read "create?'start_local' not defined in .aliases.zsh. Create it? [Y/n] "
+			create_start_local $create
 		}
 
 		source .aliases.zsh
 		start_local
 	else
-		echo "$PWD/.aliases.zsh not found"
+		read "create?.aliases.zsh not found. Create it? [Y/n] "
+		create_start_local $create
+	fi
+}
+
+create_start_local() {
+	if [[ "$1" =~ ^[Yy]$ ]] || [[ "$1" == "" ]]; then
+		read "command?Command to run: "
+		echo "start_local() {\n\t$command\n}" >> .aliases.zsh
+		echo "Created 'start_local' in $PWD/.aliases.zsh"
+
+		read "run_start?Run 'start' now? [Y/n] "
+		if [[ "run_start" =~ ^[Yy]$ ]] || [[ "run_start" == "" ]]; then
+			start
+		fi
+	else
 		return 1
 	fi
 }
