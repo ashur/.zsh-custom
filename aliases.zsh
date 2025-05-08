@@ -30,7 +30,7 @@ create_start_local() {
 		echo "Created 'start_local' in $PWD/.aliases.zsh"
 
 		read "run_start?Run 'start' now? [Y/n] "
-		if [[ "run_start" =~ ^[Yy]$ ]] || [[ "run_start" == "" ]]; then
+		if [[ "$run_start" =~ ^[Yy]$ ]] || [[ "$run_start" == "" ]]; then
 			start
 		fi
 	else
